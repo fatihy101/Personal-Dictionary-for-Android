@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "44800548051",
+    "firebase_url": "https://personal-dictionary-4408b.firebaseio.com",
+    "project_id": "personal-dictionary-4408b",
+    "storage_bucket": "personal-dictionary-4408b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44800548051:android:dd6873dc332179a9ee0826",
+        "android_client_info": {
+          "package_name": "com.fatihy.pdictionarypre_alpha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "44800548051-mdlote66vl5v1ltt4e1m1hl1cvecmnb2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fatihy.pdictionarypre_alpha",
+            "certificate_hash": "05706c9380624ff80389da8afbd851ad5f430a25"
+          }
+        },
+        {
+          "client_id": "44800548051-mdnhc9m7rbndebjm0c9g7ucdf7uviiso.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa5wGVG5GZDEPjSb378ntiYEJc1ESHGTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "44800548051-mdnhc9m7rbndebjm0c9g7ucdf7uviiso.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
