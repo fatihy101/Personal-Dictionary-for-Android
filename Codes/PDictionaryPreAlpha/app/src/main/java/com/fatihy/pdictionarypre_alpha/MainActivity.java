@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     {
         if (!firstWord.getText().toString().equals("") && !secondWord.getText().toString().equals(""))
         {
+            infoText.setTextColor(Color.rgb(00,00,00));
             infoText.setText("Please wait...");
             uploadToFirebase();
         }

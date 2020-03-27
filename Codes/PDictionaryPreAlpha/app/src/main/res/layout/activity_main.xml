@@ -10,67 +10,74 @@
         android:id="@+id/equalSign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="156dp"
         android:text="="
         android:textSize="26dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstWord" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/infoText"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginBottom="42dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="296dp"
+        android:layout_marginBottom="11dp"
         android:text=""
+        android:textAlignment="textStart"
         app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/firstWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="73dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="@+id/secondWord"
         app:layout_constraintStart_toStartOf="@+id/secondWord"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/secondWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="25dp"
+        android:id="@+id/firstWord"
+        android:layout_width="245dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="61dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="text"
         android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/equalSign"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/equalSign" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/secondWord"
+        android:layout_width="245dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginBottom="55dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/equalSign"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="280dp"
+        android:layout_marginEnd="51dp"
         android:onClick="save"
         android:text="ADD TO LIBRARY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button2" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="18dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="332dp"
         android:onClick="showLibrary"
         android:text="GO TO LIBRARY"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button"
-        app:layout_constraintEnd_toStartOf="@+id/button"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

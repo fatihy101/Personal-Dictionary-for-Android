@@ -4,13 +4,18 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/dictionary"
+        android:roundIcon="@mipmap/dictionary"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".libraryActivity" android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".MainActivity">
+
+        <activity android:name=".libraryActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="Library"
+            >  </activity>
+
+        <activity android:name=".MainActivity"
+            android:label="Personal Dictionary Alpha v.0.1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
