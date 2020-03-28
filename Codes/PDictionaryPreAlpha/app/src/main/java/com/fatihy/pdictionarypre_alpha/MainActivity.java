@@ -22,9 +22,11 @@ package com.fatihy.pdictionarypre_alpha;
 public class MainActivity extends AppCompatActivity {
 
     EditText firstWord, secondWord;
-  TextView infoText;
-  FirebaseFirestore firebaseFirestore;
-
+    TextView infoText;
+    FirebaseFirestore firebaseFirestore;
+    // TODO: Show the data !PRIORITY
+    //TODO: Add authentication
+    //TODO: Make firebase offline.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
         firstWord =  findViewById(R.id.firstWord);
         secondWord = findViewById(R.id.secondWord);
-       infoText  = findViewById(R.id.infoText);
-       firebaseFirestore = FirebaseFirestore.getInstance();
+        infoText  = findViewById(R.id.infoText);
+        firebaseFirestore = FirebaseFirestore.getInstance();
     }
 
     public void save(View view)
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             infoText.setText("Please fill the empty areas!");
         }
     }
-
+// Method for uploading Firebase server
     public void uploadToFirebase()
     {
         String[] theWord = new String[2];
