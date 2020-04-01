@@ -6,21 +6,21 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
+import java.util.AbstractMap;
+
 public class PageViewModel extends ViewModel {
 
-    private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
-    private LiveData<String> mText = Transformations.map(mIndex, new Function<Integer, String>() {
-        @Override
-        public String apply(Integer input) {
-            return "Hello world from section: " + input;
-        }
-    });
+    private MutableLiveData<String>  xInput = new MutableLiveData<>();
 
-    public void setIndex(int index) {
-        mIndex.setValue(index);
+    public void setInput(String xInput)
+    {
+        this.xInput.setValue(xInput);
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<String> getInput()
+    {
+        return xInput;
     }
+
+
 }
