@@ -14,6 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class libraryActivity extends AppCompatActivity {
@@ -42,7 +43,7 @@ public class libraryActivity extends AppCompatActivity {
         Map<String, Object> data = snapshot.getData();
         String firstWord = (String) data.get("firstWord");
         String secondWord = (String) data.get("secondWord");
-        System.out.println(firstWord);
+        System.out.println(firstWord +" = "+ secondWord );
     }
 
        }
