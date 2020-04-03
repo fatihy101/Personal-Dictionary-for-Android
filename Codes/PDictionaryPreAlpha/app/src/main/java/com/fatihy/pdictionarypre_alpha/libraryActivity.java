@@ -20,12 +20,21 @@ import java.util.Map;
 public class libraryActivity extends AppCompatActivity {
 
     FirebaseFirestore firebaseFirestore;
+ ArrayList<String> words;
+ ArrayList<String> meanings;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //To display the go back button.
+
+        //Initialization of variables
         firebaseFirestore = FirebaseFirestore.getInstance();
+        words = new ArrayList<>();
+        meanings = new ArrayList<>();
+
         getDataFirebase();
     }
 
@@ -41,11 +50,14 @@ public class libraryActivity extends AppCompatActivity {
     for(DocumentSnapshot snapshot:queryDocumentSnapshots.getDocuments())
     {
         Map<String, Object> data = snapshot.getData();
-        String firstWord = (String) data.get("firstWord");
-        String secondWord = (String) data.get("secondWord");
-        System.out.println(firstWord +" = "+ secondWord );
+        words.add((String) data.get("firstWord"));
+        meanings.add((String) data.get("secondWord"));
     }
-
+    for (int i = 0; i<words.size();i++)
+    {
+        //It's for displaying the words and meanings on console.
+        System.out.println(words.get(i)+ " = " + meanings.get(i));
+    }
        }
         });
     }

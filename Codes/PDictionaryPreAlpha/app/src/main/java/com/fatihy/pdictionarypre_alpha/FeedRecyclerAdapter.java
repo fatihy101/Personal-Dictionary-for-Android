@@ -15,9 +15,9 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
     @NonNull
     @Override
     public WordHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.recycler_view_item,parent,false);
-                return new WordHolder(view);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext()); //We're saying that parent variable demand a context in this line.
+        View view = layoutInflater.inflate(R.layout.recycler_view_item,parent,false); //We're binding our view_item.xml to the parent.
+                return new WordHolder(view); // Now we're returning the value as a "WordHolder".
     }
 
     @Override
