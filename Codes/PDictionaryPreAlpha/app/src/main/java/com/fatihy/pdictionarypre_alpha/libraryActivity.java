@@ -57,7 +57,7 @@ public class libraryActivity extends AppCompatActivity {
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
         if(e!=null)
         {
-            Toast.makeText(libraryActivity.this,e.getLocalizedMessage().toString(),Toast.LENGTH_LONG).show();
+            Toast.makeText(libraryActivity.this,e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
         }
     for(DocumentSnapshot snapshot:queryDocumentSnapshots.getDocuments())
     {

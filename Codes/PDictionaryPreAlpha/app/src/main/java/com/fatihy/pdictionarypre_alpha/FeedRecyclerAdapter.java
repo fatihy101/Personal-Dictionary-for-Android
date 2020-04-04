@@ -3,6 +3,7 @@ package com.fatihy.pdictionarypre_alpha;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,7 +45,7 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
     }
 
     class WordHolder extends RecyclerView.ViewHolder{
-TextView word, meaning;
+Button word, meaning;
 
         public WordHolder(@NonNull View itemView) {
             super(itemView);
