@@ -6,6 +6,9 @@ package com.fatihy.pdictionarypre_alpha;
         import android.content.Intent;
         import android.graphics.Color;
         import android.os.Bundle;
+        import android.view.Menu;
+        import android.view.MenuInflater;
+        import android.view.MenuItem;
         import android.view.View;
         import android.widget.EditText;
         import android.widget.TextView;
@@ -16,6 +19,7 @@ package com.fatihy.pdictionarypre_alpha;
         import com.google.firebase.firestore.DocumentReference;
         import com.google.firebase.firestore.FieldValue;
         import com.google.firebase.firestore.FirebaseFirestore;
+        import com.google.firebase.internal.InternalTokenProvider;
 
         import java.util.HashMap;
 
@@ -24,9 +28,35 @@ public class MainActivity extends AppCompatActivity {
     EditText firstWord, secondWord;
     TextView infoText;
     FirebaseFirestore firebaseFirestore;
-    // TODO: Show the data !PRIORITY
+
     //TODO: Add authentication
-    //TODO: Make firebase offline.
+    //TODO: Make firebase offline
+
+//This method for initialize to the top-side menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_options_menu,menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.login_menu)
+        {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        }
+        else if(item.getItemId()== R.id.sign_in_menu)
+        {
+            Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+        startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         }
     });
 }
+
 
 public void showLibrary(View view)
 {
