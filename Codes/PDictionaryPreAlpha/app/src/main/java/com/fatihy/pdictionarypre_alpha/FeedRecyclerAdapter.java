@@ -10,7 +10,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapter.WordHolder> {
+
+    private ArrayList<String> words;
+    private ArrayList<String> meanings;
+//Constructor
+    public FeedRecyclerAdapter(ArrayList<String> words, ArrayList<String> meanings) {
+        this.words = words;
+        this.meanings = meanings;
+    }
 
     @NonNull
     @Override
@@ -22,13 +33,14 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
 
     @Override
     public void onBindViewHolder(@NonNull WordHolder holder, int position) {
-  holder.word.setText("");
-  holder.meaning.setText("");
+
+  holder.word.setText(words.get(position));
+  holder.meaning.setText(meanings.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return words.size();
     }
 
     class WordHolder extends RecyclerView.ViewHolder{

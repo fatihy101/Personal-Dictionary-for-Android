@@ -3,6 +3,9 @@ package com.fatihy.pdictionarypre_alpha;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -21,7 +24,9 @@ public class libraryActivity extends AppCompatActivity {
 
     FirebaseFirestore firebaseFirestore;
  ArrayList<String> words;
- ArrayList<String> meanings;
+  ArrayList<String> meanings;
+ FeedRecyclerAdapter feedRecyclerAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +39,16 @@ public class libraryActivity extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
         words = new ArrayList<>();
         meanings = new ArrayList<>();
-
         getDataFirebase();
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+         feedRecyclerAdapter = new FeedRecyclerAdapter(words,meanings);
+         recyclerView.setAdapter(feedRecyclerAdapter);
     }
+
+
 
     public void getDataFirebase()
     {
@@ -52,6 +64,7 @@ public class libraryActivity extends AppCompatActivity {
         Map<String, Object> data = snapshot.getData();
         words.add((String) data.get("firstWord"));
         meanings.add((String) data.get("secondWord"));
+        feedRecyclerAdapter.notifyDataSetChanged();
     }
     for (int i = 0; i<words.size();i++)
     {
