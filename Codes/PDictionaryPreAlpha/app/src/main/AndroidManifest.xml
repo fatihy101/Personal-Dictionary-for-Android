@@ -8,8 +8,10 @@
         android:roundIcon="@mipmap/dictionary"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignInActivity"></activity>
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".SignInActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".LoginActivity"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".libraryActivity"
             android:label="Library"
