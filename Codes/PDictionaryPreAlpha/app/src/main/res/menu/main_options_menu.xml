@@ -4,7 +4,10 @@
         android:id="@+id/login_menu"
         android:title="@string/log_in" />
     <item
-        android:id="@+id/sign_in_menu"
-        android:title="@string/sign_in"
+        android:id="@+id/sign_up_menu"
+        android:title="@string/sign_up"
         />
+    <item
+         android:id="@+id/sign_out"
+        android:title="@string/sign_out"/>
 </menu>

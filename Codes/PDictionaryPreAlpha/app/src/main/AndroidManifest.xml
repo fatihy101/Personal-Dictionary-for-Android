@@ -8,7 +8,7 @@
         android:roundIcon="@mipmap/dictionary"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignInActivity"
+        <activity android:name=".SignUpActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".LoginActivity"
             android:parentActivityName=".MainActivity"/>

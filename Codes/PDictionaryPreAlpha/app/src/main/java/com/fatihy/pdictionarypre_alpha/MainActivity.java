@@ -16,10 +16,11 @@ package com.fatihy.pdictionarypre_alpha;
 
         import com.google.android.gms.tasks.OnFailureListener;
         import com.google.android.gms.tasks.OnSuccessListener;
+        import com.google.firebase.auth.FirebaseAuth;
+        import com.google.firebase.auth.FirebaseUser;
         import com.google.firebase.firestore.DocumentReference;
         import com.google.firebase.firestore.FieldValue;
         import com.google.firebase.firestore.FirebaseFirestore;
-        import com.google.firebase.internal.InternalTokenProvider;
 
         import java.util.HashMap;
 
@@ -28,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     EditText firstWord, secondWord;
     TextView infoText;
     FirebaseFirestore firebaseFirestore;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private FirebaseAuth mAuth;
+
 
     //TODO: Add authentication
     //TODO: Make firebase offline
@@ -41,6 +45,26 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    public void visibilityCheck() // To activate or deactivate the menu items.
+    {
+        View login_item  = findViewById(R.id.login_menu);
+        View signup_item = findViewById(R.id.sign_up_menu);
+        View signout_item = findViewById(R.id.sign_out);
+
+        if(user != null)
+        {
+            login_item.setVisibility(View.GONE);
+            signup_item.setVisibility(View.GONE);
+            signout_item.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            login_item.setVisibility(View.VISIBLE);
+            signup_item.setVisibility(View.VISIBLE);
+            signout_item.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.login_menu)
@@ -48,10 +72,14 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
         }
-        else if(item.getItemId()== R.id.sign_in_menu)
+        else if(item.getItemId()== R.id.sign_up_menu)
         {
-            Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+            Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
         startActivity(intent);
+        }
+        else if(item.getItemId() == R.id.sign_out)
+        {
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -66,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
         secondWord = findViewById(R.id.secondWord);
         infoText  = findViewById(R.id.infoText);
         firebaseFirestore = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+
+
     }
 
     public void save(View view)
