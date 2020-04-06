@@ -27,14 +27,28 @@ package com.fatihy.pdictionarypre_alpha;
 public class MainActivity extends AppCompatActivity {
 
     EditText firstWord, secondWord;
-    TextView infoText;
+    TextView infoText,currentUser;
     FirebaseFirestore firebaseFirestore;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private FirebaseAuth mAuth;
-
+    boolean isLoggedIn = false;
+    int uniqueRandomGuestKey = -1;
 
     //TODO: Add authentication
     //TODO: Make firebase offline
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        firstWord =  findViewById(R.id.firstWord);
+        secondWord = findViewById(R.id.secondWord);
+        infoText  = findViewById(R.id.infoText);
+        currentUser = findViewById(R.id.currentUser);
+        firebaseFirestore = FirebaseFirestore.getInstance();
+   checkCurrentUser(user);
+
+    }
 
 //This method for initialize to the top-side menu
     @Override
@@ -45,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void visibilityCheck() // To activate or deactivate the menu items.
+    public void visibilityCheck() // To activate or deactivate the menu items. FIXME
     {
         View login_item  = findViewById(R.id.login_menu);
         View signup_item = findViewById(R.id.sign_up_menu);
@@ -65,6 +79,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void checkCurrentUser(FirebaseUser userM) //To check the current user signed in.
+    {
+        if(userM==null)
+        {
+            currentUser.setText("You are guest!");
+        }
+        else {
+            currentUser.setText("Current User: "+ user.getEmail());
+        isLoggedIn = true;
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.login_menu)
@@ -80,26 +106,15 @@ public class MainActivity extends AppCompatActivity {
         else if(item.getItemId() == R.id.sign_out)
         {
 
+
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        firstWord =  findViewById(R.id.firstWord);
-        secondWord = findViewById(R.id.secondWord);
-        infoText  = findViewById(R.id.infoText);
-        firebaseFirestore = FirebaseFirestore.getInstance();
-        mAuth = FirebaseAuth.getInstance();
 
 
-    }
-
-    public void save(View view)
+    public void save(View view) //Save the words to DB
     {
         if (!firstWord.getText().toString().equals("") && !secondWord.getText().toString().equals(""))
         {
@@ -116,14 +131,19 @@ public class MainActivity extends AppCompatActivity {
     public void uploadToFirebase()
     {
         String[] theWord = new String[2];
+        if (!isLoggedIn || uniqueRandomGuestKey == -1)  uniqueRandomGuestKey = (int) (Math.random() * 10000); //To get random value for guest user.
+        // TODO: In the future two guest may have same numbers. Find a way to not use again the same number.
 
-    theWord[0] = firstWord.getText().toString();
-    theWord[1] = secondWord.getText().toString();
+        theWord[0] = firstWord.getText().toString();
+        theWord[1] = secondWord.getText().toString();
 
     HashMap<String,Object> hashMap = new HashMap<>();
         hashMap.put("firstWord",theWord[0]);
         hashMap.put("secondWord",theWord[1]);
         hashMap.put("date", FieldValue.serverTimestamp());
+
+        if(isLoggedIn) hashMap.put("UID", user.getUid());
+        else hashMap.put("UID","guest"+ uniqueRandomGuestKey);
 
         firebaseFirestore.collection("Words").add(hashMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
         @Override
@@ -134,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
     }).addOnFailureListener(new OnFailureListener() {
         @Override
         public void onFailure(@NonNull Exception e) {
-            Toast.makeText(MainActivity.this,e.getLocalizedMessage().toString(),Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
             infoText.setTextColor(Color.rgb(255,00,00));
             infoText.setText("FAILED");
         }

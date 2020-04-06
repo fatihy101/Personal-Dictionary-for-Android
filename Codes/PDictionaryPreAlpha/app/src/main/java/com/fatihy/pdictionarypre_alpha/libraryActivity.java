@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,6 +28,7 @@ public class libraryActivity extends AppCompatActivity {
  ArrayList<String> words;
   ArrayList<String> meanings;
  FeedRecyclerAdapter feedRecyclerAdapter;
+ FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
     @Override
@@ -52,7 +55,8 @@ public class libraryActivity extends AppCompatActivity {
 
     public void getDataFirebase()
     {
-        firebaseFirestore.collection("Words").orderBy("date", Query.Direction.DESCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        firebaseFirestore.collection("Words").orderBy("date", Query.Direction.DESCENDING).
+                addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
         if(e!=null)

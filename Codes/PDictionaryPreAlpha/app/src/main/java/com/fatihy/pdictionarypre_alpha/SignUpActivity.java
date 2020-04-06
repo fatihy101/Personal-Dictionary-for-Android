@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,8 +13,10 @@ import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -46,9 +49,9 @@ private FirebaseAuth mAuth;
 
     public void signInConfirm(View view)
     {
-         String emailTemp = email.getText().toString();
-         String passwordTemp = password.getText().toString();
-         String passwordReTemp = passwordRe.getText().toString();
+         final String emailTemp = email.getText().toString();
+         final String passwordTemp = password.getText().toString();
+         final String passwordReTemp = passwordRe.getText().toString();
 
         if(!passwordTemp.equals(passwordReTemp))
         {
@@ -65,6 +68,12 @@ private FirebaseAuth mAuth;
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(getApplicationContext(), "Your account has been created successfully. ", Toast.LENGTH_SHORT).show();
 
+                mAuth.signInWithEmailAndPassword(emailTemp,passwordTemp).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
+                    }
+                });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
